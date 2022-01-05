@@ -1,0 +1,22 @@
+
+.header {
+    grid-area: h;
+    background-color: whitesmoke;
+    position: relative;
+    margin: 5px;
+}
+
+.p{
+    color: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 20pt;
+    text-align: center;
+}
+.mainLogo {
+    float: left;
+    width: 300px;
+    height: 150px
+}
+.hat{
+    position: absolute; bottom: -20px; left: 320px;
+}

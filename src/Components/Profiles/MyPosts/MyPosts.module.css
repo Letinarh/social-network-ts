@@ -1,0 +1,10 @@
+.tArea{
+    width:99%;
+    height:35px;
+}
+button {
+    color: black;
+    border: orangered 0.125em solid;
+    padding: 0.25em 1em;
+    border-radius: 0.35em;
+}
