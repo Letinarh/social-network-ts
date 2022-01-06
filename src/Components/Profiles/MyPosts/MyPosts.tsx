@@ -11,9 +11,12 @@ const MyPosts = () => {
             </div>
             <button>Submit</button>
         </div>
-        <Post />
-        <Post />
-        <Post />
+        <div className={s.posts}>
+            <Post avatar = "https://cdn1.iconfinder.com/data/icons/basic-ui-set-v5-user-outline/64/Account_profile_user_avatar_small-512.png" message = "Hello"/>
+            <Post />
+            <Post />
+        </div>
+
     </div>
 }
 export default MyPosts
