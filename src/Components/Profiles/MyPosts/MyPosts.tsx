@@ -20,6 +20,7 @@ const MyPosts = () => {
             <div>
                 <h3>my posts</h3>
                 <textarea className={s.tArea} name="comment" placeholder="Your news..."></textarea>
+                {/* стиль инпута -  https://codepen.io/visualcookie/pen/kkwxPm*/}
             </div>
             <button>Submit</button>
         </div>
