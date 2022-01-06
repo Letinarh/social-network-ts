@@ -6,19 +6,16 @@ type postPropsType = {
     message: string
 }
 
-const Post = ({avatar, message}) => {
+const Post = (props:postPropsType) => {
     return    <div>
         <div className={s.post}>
-            <span>
-                <img src={avatar}/>
-            </span>
+            <div className={s.avaArea}>
+                <img src={props.avatar}/>
+            </div>
 
-            <span>
-
-            </span>
-            <span>
-                message : {message}
-            </span>
+            <div className={s.textArea}>
+               <p> message : {props.message} </p>
+            </div>
 
 
 
