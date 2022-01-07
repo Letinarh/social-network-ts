@@ -4,6 +4,7 @@ import s from "./Post.module.css";
 type postPropsType = {
     avatar: string,
     message: string
+    likesCount:number
 }
 
 const Post = (props:postPropsType) => {
@@ -15,7 +16,9 @@ const Post = (props:postPropsType) => {
 
             <div className={s.textArea}>
                <p> message : {props.message} </p>
+                <span>{props.likesCount} Likes</span>
             </div>
+
 
 
 

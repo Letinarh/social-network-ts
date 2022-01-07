@@ -4,7 +4,7 @@ import ProfileCover from "../../IMG/Sunset.jpg"
 import imageAva from "../../IMG/Ava1.png"
 import MyPosts from "./MyPosts/MyPosts"
 const Profile = () => {
-    return <div className={s.Profile}>
+    return <div>
         <div>
             <img src={ProfileCover} alt="Sunset"/>
         </div>

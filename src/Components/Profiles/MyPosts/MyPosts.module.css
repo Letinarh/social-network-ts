@@ -1,13 +1,63 @@
-.tArea{
-    width:99%;
-    height:35px;
+.divMessageInput{
+    width: 800px;
+    margin: 0 auto;
+
 }
-button {
+.divMessageInput button{
+
+}
+
+.divMessageInput button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: whitesmoke;
+    border: solid;
+    border-color: rgb(79,185,227);
     color: black;
-    border: orangered 0.125em solid;
-    padding: 0.25em 1em;
-    border-radius: 0.35em;
-}
-.posts{
     text-align: center;
+    font-size: 14px;
+    padding: 5px;
+    width: 100px;
+    height: 30px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.divMessageInput button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.divMessageInput button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.divMessageInput button:hover span {
+    padding-right: 25px;
+}
+
+.divMessageInput button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+
+
+.messageInput{
+    border: 2px solid gray;
+    border-radius: 6px;
+    width: 800px;
+    margin: 0 auto;
+}
+.messageInput:focus{
+    border: 2px solid black;
+    border-radius: 4px;
 }
