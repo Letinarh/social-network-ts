@@ -16,6 +16,7 @@
     align-self: end;
 }
 .textArea{
+    width: 800px;
     position: relative;
     grid-area: textArea;
     padding: 10px;

@@ -2,6 +2,7 @@ import React from 'react';
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
 
+
 let bigData: { id: number, avatar: string, message: string, likesCount:number}[] = [
     {
         id: 0,

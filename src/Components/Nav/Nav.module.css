@@ -6,9 +6,10 @@
 }
 .item {
     color: black;
+    text-decoration: none;
 
 }
 
-.active {
+.activeLink {
     color: darkorange;
 }

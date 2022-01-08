@@ -1,0 +1,33 @@
+.dialogs{
+display: grid;
+    grid-template-columns: 2fr 10fr;
+
+}
+.dialog{
+
+
+}
+.dialogItems{
+
+}
+
+.messages {
+
+
+}
+.messageItem{
+
+}
+
+
+/*
+NavLinkStyles*/
+.item {
+    color: black;
+    text-decoration: none;
+
+}
+
+.activeLink {
+    color: darkorange;
+}

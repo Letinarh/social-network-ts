@@ -7,16 +7,16 @@ type postPropsType = {
     likesCount:number
 }
 
-const Post = (props:postPropsType) => {
+const Post:React.FC<postPropsType> = ({avatar,message,likesCount}) => {
     return    <div>
         <div className={s.post}>
             <div className={s.avaArea}>
-                <img src={props.avatar}/>
+                <img src={avatar}/>
             </div>
 
             <div className={s.textArea}>
-               <p> message : {props.message} </p>
-                <span>{props.likesCount} Likes</span>
+               <p> message : {message} </p>
+                <span>{likesCount} Likes</span>
             </div>
 
 
