@@ -20,11 +20,11 @@ const Dialogs = () => {
                 </div>
             </div>
             <div className={s.messages}>
-                <div className={s.messadeItem}>Hello</div>
-                <div className={s.messadeItem}>How aea you</div>
-                <div className={s.messadeItem}></div>
-                <div className={s.messadeItem}></div>
-                <div className={s.messadeItem}></div>
+                <div className={s.messageItem}>Hello</div>
+                <div className={s.messageItem}>How aea you</div>
+                <div className={s.messageItem}></div>
+                <div className={s.messageItem}></div>
+                <div className={s.messageItem}></div>
             </div>
 
         </div>
