@@ -2,29 +2,40 @@ import React from 'react';
 import s from "./Dialogs.module.css"
 import {NavLink} from "react-router-dom";
 
+
+type dialogItemPropsType = {
+    id:string
+    name:string
+}
+const DialogItem =(props:dialogItemPropsType) => {
+    let path ="/dialogs/" + props.id;
+    return (
+        <div className={s.dialogItems}>
+            <NavLink to={path} className={navData => navData.isActive ?s.activeLink : s.item}>{props.name}</NavLink>
+        </div>
+    )
+}
+type messagePropsType = {
+    messageText:string
+}
+const Message = (props:messagePropsType) =>{
+    return <div className={s.messageItem}>{props.messageText}</div>
+}
+
 const Dialogs = () => {
     return (
         <div className={s.dialogs}>
             <div className={s.dialog}>
-                <div className={s.dialogItems}>
-                    <NavLink to="/dialogs/1" className={navData => navData.isActive ?s.activeLink : s.item}>Vasya</NavLink>
-                </div>
-                <div className={s.dialogItems}>
-                    <NavLink to="/dialogs/2" className={navData => navData.isActive ?s.activeLink : s.item}>Petya</NavLink>
-                </div>
-                <div className={s.dialogItems}>
-                    <NavLink to="/dialogs/3" className={navData => navData.isActive ?s.activeLink : s.item}>Kolya</NavLink>
-                </div>
-                <div className={s.dialogItems}>
-                    <NavLink to="/dialogs/4" className={navData => navData.isActive ?s.activeLink : s.item}>Serg</NavLink>
-                </div>
+                <DialogItem  name="Petro" id="1"></DialogItem>
+                <DialogItem  name="Nikola" id="2"></DialogItem>
+                <DialogItem  name="Zahar" id="3"></DialogItem>
+                <DialogItem  name="Kat" id="4"></DialogItem>
             </div>
             <div className={s.messages}>
-                <div className={s.messageItem}>Hello</div>
-                <div className={s.messageItem}>How aea you</div>
-                <div className={s.messageItem}></div>
-                <div className={s.messageItem}></div>
-                <div className={s.messageItem}></div>
+                <Message messageText={"Hi"}></Message>
+                <Message messageText={"Bachelor degree"}></Message>
+                <Message messageText={"I love Type Script"}></Message>
+                <Message messageText={"Bye"}></Message>
             </div>
 
         </div>
