@@ -1,6 +1,7 @@
 import React from 'react';
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
+import PostInput from "./PostInput/PostInput";
 
 
 type postPropsType = {
@@ -25,20 +26,15 @@ let postsData:Array<postPropsType> = [
 ]
 
 const MyPosts = () => {
-    let postsElements = postsData.map((postItem)=> <Post avatar={postItem.avatar} message={postItem.message} likesCount={postItem.likesCount}/>)
-    return <div>
-        <div className={s.divMessageInput}>
+    let postsElements = postsData.map((postItem)=>
+        <Post avatar={postItem.avatar} message={postItem.message} likesCount={postItem.likesCount}/>)
 
-            <div>
-                <h3>my posts</h3>
-                <div>
-                    <textarea className={s.messageInput} name="comment" placeholder="Your news..."></textarea>
-                </div>
-            </div>
-            <button><span>Send </span></button>
+    return <div>
+        <div>
+            <PostInput/>
         </div>
         
-        <div className={s.posts}>
+        <div>
             {postsElements}
         </div>
 

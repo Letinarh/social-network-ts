@@ -18,10 +18,6 @@ const Post:React.FC<postPropsType> = ({avatar,message,likesCount}) => {
                <p> message : {message} </p>
                 <span>{likesCount} Likes</span>
             </div>
-
-
-
-
         </div>
 
     </div>
