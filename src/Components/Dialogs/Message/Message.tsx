@@ -1,9 +1,11 @@
 import React from 'react';
 import s from "./Message.module.css";
-import {messagePropsType} from "../Dialogs";
+import {messageType} from "../../../index";
 
 
-const Message = (props:messagePropsType) =>{
+
+
+const Message = (props:messageType) =>{
     return <div className={s.messageItem}>{props.messageText}</div>
 }
 

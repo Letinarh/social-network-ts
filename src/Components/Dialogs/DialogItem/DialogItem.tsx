@@ -1,9 +1,11 @@
 import React from 'react';
 import s from "./DialogItem.module.css";
 import {NavLink} from "react-router-dom";
-import { dialogItemPropsType } from '../Dialogs';
+import {dialogItemType} from "../../../index";
 
-const DialogItem =(props:dialogItemPropsType) => {
+
+
+const DialogItem =(props:dialogItemType) => {
     let path ="/dialogs/" + props.id;
     return (
         <div className={s.dialogItems}>
