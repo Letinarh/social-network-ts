@@ -1,13 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-
-
-
-
-//BLL
 export type dialogItemType = {
     id:number
     name:string
@@ -16,7 +6,7 @@ export type messageType = {
     id:number
     messageText:string
 }
-export  type postsType = {
+export type postsType = {
     id: number,
     avatar: string,
     message: string,
@@ -27,7 +17,7 @@ export type StateType ={
     messageData:Array<messageType>
     postsData:Array<postsType>
 }
-let state ={
+let State:StateType ={
     dialogsData: [
         {id : 1, name : "Petro" },
         {id : 2, name : "Nikola" },
@@ -54,14 +44,4 @@ let state ={
         }
     ]
 }
-
-
-ReactDOM.render(
-  <React.StrictMode>
-    <App State={state}/>
-  </React.StrictMode>,
-  document.getElementById('root')
-);
-
-
-reportWebVitals();
+export default State
