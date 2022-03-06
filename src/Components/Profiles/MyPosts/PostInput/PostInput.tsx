@@ -1,15 +1,24 @@
 import React, {RefObject} from 'react';
 import s from "./PostInput.module.css";
 
-const PostInput = () => {
+
+
+
+type postInputPropsType={
+    addPostCAllback: (textNewPost:string)=>void
+}
+const PostInput = (props:postInputPropsType) => {
 
     let textInput:RefObject<HTMLTextAreaElement> = React.createRef();
     const addPostHandler = () =>{
 
         // @ts-ignore
         let textNewPost = textInput.current.value
-    alert(textNewPost)
+    props.addPostCAllback(textNewPost)
+        // @ts-ignore
+        textInput.current.value = ""
     }
+
     return (
         <div className={s.divMessageInput}>
             <div>

@@ -1,3 +1,5 @@
+import {renderEntireTree} from "../render";
+
 export type dialogItemType = {
     id: number
     name: string
@@ -18,11 +20,23 @@ export type StateType = {
         messageData: Array<messageType>
     }
     ProfilePage: {
-        Posts: Array<postsType>
+        Posts: Array<postsType>,
+        AddPostCallBack: (newPostText:string) => void,
     }
 }
 
-export const State: StateType = {
+export let addPost = (newPostText:string)=>{
+    let newPost:postsType = {
+        id: 2,
+        message: newPostText,
+        avatar: "https://iconarchive.com/download/i45701/tooschee/medievalish-gaming/wow-orc.ico",
+        likesCount: 0,
+    }
+    State.ProfilePage.Posts = [...State.ProfilePage.Posts,newPost]
+    renderEntireTree(State)
+}
+
+export let State: StateType = {
     DialogsPage: {
         dialogsData: [
             {id: 1, name: "Petro"},
@@ -51,6 +65,8 @@ export const State: StateType = {
                 avatar: "https://iconarchive.com/download/i45729/tooschee/water-gaming/wow-worgen.ico",
                 likesCount: 5,
             }
-        ]
+        ],
+        AddPostCallBack: addPost,
     }
 }
+

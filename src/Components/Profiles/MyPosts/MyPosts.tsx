@@ -13,7 +13,7 @@ const MyPosts = (props:MyPostsPropsType) => {
 
     return <div>
         <div>
-            <PostInput/>
+            <PostInput addPostCAllback={props.addPostCallBack}/>
         </div>
         
         <div>
