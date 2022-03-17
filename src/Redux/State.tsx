@@ -1,4 +1,5 @@
 import {renderEntireTree} from "../render";
+import {ChangeEvent} from "react";
 
 export type dialogItemType = {
     id: number
@@ -21,18 +22,27 @@ export type StateType = {
     }
     ProfilePage: {
         Posts: Array<postsType>,
-        AddPostCallBack: (newPostText:string) => void,
+        AddPostCallBack: () => void,
+        textAreaText:string,
+        changeTextArea: (currentText:string) => void
     }
 }
 
-export let addPost = (newPostText:string)=>{
+export let addPost = ()=>{
     let newPost:postsType = {
         id: 2,
-        message: newPostText,
+        message: State.ProfilePage.textAreaText,
         avatar: "https://iconarchive.com/download/i45701/tooschee/medievalish-gaming/wow-orc.ico",
         likesCount: 0,
     }
+    State.ProfilePage.textAreaText = ""
     State.ProfilePage.Posts = [...State.ProfilePage.Posts,newPost]
+
+    renderEntireTree(State)
+}
+
+export let changeTextArea = (currentText:string)=>{
+    State.ProfilePage.textAreaText = currentText
     renderEntireTree(State)
 }
 
@@ -67,6 +77,8 @@ export let State: StateType = {
             }
         ],
         AddPostCallBack: addPost,
+        textAreaText: "",
+        changeTextArea:changeTextArea,
     }
 }
 

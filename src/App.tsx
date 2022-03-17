@@ -25,7 +25,12 @@ const App = (props:AppPropsType) => {
                 <div className="app-wrapper-content">
                     <Routes>
                         <Route path={"/"} element={<Navigate to="/profile"/>}/>
-                        <Route path="/profile" element={<Profile postsData={props.State.ProfilePage.Posts} addPostCallBack={addPost} />}/>
+                        <Route path="/profile" element={<Profile
+                            postsData={props.State.ProfilePage.Posts}
+                            addPostCallBack={addPost}
+                            textAreaText={props.State.ProfilePage.textAreaText}
+                            changeTextArea={props.State.ProfilePage.changeTextArea}
+                        />}/>
                         <Route path="/dialogs" element={<Dialogs messageData={props.State.DialogsPage.messageData} dialogsData={props.State.DialogsPage.dialogsData} />}  />
                     </Routes>
                 </div>

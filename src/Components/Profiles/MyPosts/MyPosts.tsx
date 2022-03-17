@@ -4,6 +4,7 @@ import { ProfilePropsType } from '../Profile';
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import PostInput from "./PostInput/PostInput";
+import {postsType} from "../../../Redux/State";
 
 
 type MyPostsPropsType = ProfilePropsType
@@ -13,7 +14,11 @@ const MyPosts = (props:MyPostsPropsType) => {
 
     return <div>
         <div>
-            <PostInput addPostCAllback={props.addPostCallBack}/>
+            <PostInput
+                addPostCallback={props.addPostCallBack}
+                text={props.textAreaText}
+                changeTextArea={props.changeTextArea}
+            />
         </div>
         
         <div>
