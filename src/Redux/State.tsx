@@ -1,5 +1,8 @@
-import {renderEntireTree} from "../render";
-import {ChangeEvent} from "react";
+
+let rerenderEntireTree = (state:StateType) =>{
+
+}
+
 
 export type dialogItemType = {
     id: number
@@ -28,7 +31,7 @@ export type StateType = {
     }
 }
 
-export let addPost = ()=>{
+export const addPost = ()=>{
     let newPost:postsType = {
         id: 2,
         message: State.ProfilePage.textAreaText,
@@ -38,12 +41,16 @@ export let addPost = ()=>{
     State.ProfilePage.textAreaText = ""
     State.ProfilePage.Posts = [...State.ProfilePage.Posts,newPost]
 
-    renderEntireTree(State)
+    rerenderEntireTree(State)
 }
 
-export let changeTextArea = (currentText:string)=>{
+export const changeTextArea = (currentText:string)=>{
     State.ProfilePage.textAreaText = currentText
-    renderEntireTree(State)
+    rerenderEntireTree(State)
+}
+
+export const subscribe = (observer:(state:StateType) => void) =>{
+    rerenderEntireTree = observer
 }
 
 export let State: StateType = {
