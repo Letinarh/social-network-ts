@@ -5,9 +5,10 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 export type ProfilePropsType ={
     postsData:Array<postsType>
+    textAreaText:string
     addPostCallBack: ()=>void
     changeTextArea: (currentText:string) => void
-    textAreaText:string
+
 }
 const Profile = (props:ProfilePropsType) => {
 
@@ -15,8 +16,8 @@ const Profile = (props:ProfilePropsType) => {
             <ProfileInfo />
             <MyPosts
                 postsData={props.postsData}
-                addPostCallBack={props.addPostCallBack}
                 textAreaText={props.textAreaText}
+                addPostCallBack={props.addPostCallBack}
                 changeTextArea={props.changeTextArea}
             />
     </div>

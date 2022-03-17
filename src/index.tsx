@@ -1,18 +1,18 @@
 import React from 'react';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import {State, StateType, subscribe} from "./Redux/State";
+import store from "./Redux/State";
 import ReactDOM from "react-dom";
 import App from "./App";
 
 
-let renderEntireTree =(state:StateType)=>{
+let render=()=>{
     ReactDOM.render(
-            <App State={state}/>,
+            <App store={store}/>,
         document.getElementById('root')
     );
 }
-renderEntireTree(State)
-subscribe(renderEntireTree)
+render()
+store.subscribe(render)
 
 reportWebVitals();
