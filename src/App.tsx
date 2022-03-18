@@ -6,15 +6,16 @@ import Profile from "./Components/Profiles/Profile"
 import Dialogs from "./Components/Dialogs/Dialogs"
 import Footer from "./Components/Footer/Footer"
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
-import {StoreType} from "./Redux/State";
+import {RootStateType, StoreType} from "./Redux/State";
 
 //UI
 type appPropsType = {
-    store:StoreType
+    state: RootStateType
+    addPost: () => void
+    changeTextArea: (currentText: string) => void
 }
 
 const App = (props:appPropsType) => {
-    const state = props.store.getState
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
@@ -24,12 +25,16 @@ const App = (props:appPropsType) => {
                     <Routes>
                         <Route path={"/"} element={<Navigate to="/profile"/>}/>
                         <Route path="/profile" element={<Profile
-                            postsData ={props.store._state.ProfilePage.Posts}
-                            addPostCallBack={props.store.addPost}
-                            textAreaText={props.store._state.ProfilePage.textAreaText}
-                            changeTextArea={props.store.changeTextArea}
+                            postsData ={props.state.profilePage.posts}
+                            addPostCallBack={props.addPost}
+                            textAreaText={props.state.profilePage.textAreaText}
+                            changeTextArea={props.changeTextArea}
                         />}/>
-                        <Route path="/dialogs" element={<Dialogs messageData={props.store._state.DialogsPage.messageData} dialogsData={props.store._state.DialogsPage.dialogsData} />}  />
+                        <Route path="/dialogs" element={
+                            <Dialogs messageData={props.state.dialogsPage.messageData}
+                                     dialogsData={props.state.dialogsPage.dialogsData}
+                            />}
+                        />
                     </Routes>
                 </div>
 

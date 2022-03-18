@@ -13,16 +13,14 @@ const PostInput = (props: postInputPropsType) => {
     let textInput: RefObject<HTMLTextAreaElement> = React.createRef();
 
     const addPostHandler = () => {
-        debugger
         props.addPostCallback()
 
     }
 
 
-    let changeTextAreaHandler=()=>{
-        //e:ChangeEvent<HTMLTextAreaElement>
-        //props.changeTextArea(e.currentTarget.value)
-        props.changeTextArea(`5`)
+    let changeTextAreaHandler=(e:ChangeEvent<HTMLTextAreaElement>)=>{
+        props.changeTextArea(e.currentTarget.value)
+        debugger
     }
     return (
         <div className={s.divMessageInput}>
@@ -36,7 +34,7 @@ const PostInput = (props: postInputPropsType) => {
                         value = {props.text}
                         onChange={
                             changeTextAreaHandler
-                        } /*props.changeTextAreaHandler*/
+                        }
                     >
 
                     </textarea>

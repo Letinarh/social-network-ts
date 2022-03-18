@@ -13,12 +13,12 @@ export type postsType = {
     likesCount: number,
 }
 export type RootStateType = {
-    DialogsPage: {
+    dialogsPage: {
         dialogsData: Array<dialogItemType>
         messageData: Array<messageType>
     }
-    ProfilePage: {
-        Posts: Array<postsType>,
+    profilePage: {
+        posts: Array<postsType>,
         textAreaText: string,
     }
 }
@@ -29,14 +29,13 @@ export type StoreType = {
     addPost: () => void
     changeTextArea: (currentText: string) => void
     subscribe: (observer: () => void) => void
-    render: () => void
+    render: (state:RootStateType) => void
     getState: () => RootStateType
-
 }
 //________________________________________________________________________
 let store: StoreType = {
     _state: {
-        DialogsPage: {
+        dialogsPage: {
             dialogsData: [
                 {id: 1, name: "Petro"},
                 {id: 2, name: "Nikola"},
@@ -50,8 +49,8 @@ let store: StoreType = {
                 {id: 4, messageText: "Just do it"},
             ],
         },
-        ProfilePage: {
-            Posts: [
+        profilePage: {
+            posts: [
                 {
                     id: 0,
                     message: "Hello people sd fh   fsdj hfsdhf d fsd fisdiu df sdf ds f sd fjd hfh sdk fsd fs df hsdk fusd fsd f sd fsdf sdi fsd  fsd fsd d sfiu diu sd fius dfi !",
@@ -71,24 +70,23 @@ let store: StoreType = {
     addPost() {
         let newPost: postsType = {
             id: 2,
-            message: this._state.ProfilePage.textAreaText,
+            message: this._state.profilePage.textAreaText,
             avatar: "https://iconarchive.com/download/i45701/tooschee/medievalish-gaming/wow-orc.ico",
             likesCount: 0,
         }
-        this._state.ProfilePage.textAreaText = ""
-        this._state.ProfilePage.Posts = [...this._state.ProfilePage.Posts, newPost]
+        this._state.profilePage.textAreaText = ""
+        this._state.profilePage.posts = [...this._state.profilePage.posts, newPost]
 
-        this.render()
+        this.render(this.getState())
     },
     changeTextArea(currentText: string) {
-        this._state.ProfilePage.textAreaText = currentText
-        this.render()
+        this._state.profilePage.textAreaText = currentText
+        this.render(this.getState())
     },
     subscribe(observer) {
         this.render = observer
     },
-    render() {
-    },
+    render() {},
     getState() {
         return this._state;
     }
