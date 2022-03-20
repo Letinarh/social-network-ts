@@ -14,9 +14,8 @@ const MyPosts = (props:MyPostsPropsType) => {
     return <div>
         <div>
             <PostInput
-                addPostCallback={props.addPostCallBack}
                 text={props.textAreaText}
-                changeTextArea={props.changeTextArea}
+                dispatch={props.dispatch}
             />
         </div>
         

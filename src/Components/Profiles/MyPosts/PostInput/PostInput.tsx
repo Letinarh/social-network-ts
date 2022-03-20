@@ -1,11 +1,11 @@
 import React, {ChangeEvent, RefObject} from 'react';
 import s from "./PostInput.module.css";
 import {log} from "util";
+import {actionsType} from "../../../../Redux/State";
 
 
 type postInputPropsType = {
-    addPostCallback: () => void
-    changeTextArea: (text:string) => void
+    dispatch: (action:actionsType)=>void
     text:string
 }
 const PostInput = (props: postInputPropsType) => {
@@ -13,14 +13,12 @@ const PostInput = (props: postInputPropsType) => {
     let textInput: RefObject<HTMLTextAreaElement> = React.createRef();
 
     const addPostHandler = () => {
-        props.addPostCallback()
-
+        props.dispatch({type:"ADD-POST"})
     }
 
 
     let changeTextAreaHandler=(e:ChangeEvent<HTMLTextAreaElement>)=>{
-        props.changeTextArea(e.currentTarget.value)
-        debugger
+        props.dispatch({type:"UPDATE-NEW-POST-TEXT",currentText: e.currentTarget.value})
     }
     return (
         <div className={s.divMessageInput}>

@@ -1,13 +1,12 @@
 import React, {ChangeEvent} from 'react';
-import {postsType } from '../../Redux/State';
+import {actionsType, postsType} from '../../Redux/State';
 import MyPosts from "./MyPosts/MyPosts"
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 export type ProfilePropsType ={
     postsData:Array<postsType>
     textAreaText:string
-    addPostCallBack: ()=>void
-    changeTextArea: (currentText:string) => void
+    dispatch: (action:actionsType)=>void
 
 }
 const Profile = (props:ProfilePropsType) => {
@@ -17,8 +16,7 @@ const Profile = (props:ProfilePropsType) => {
             <MyPosts
                 postsData={props.postsData}
                 textAreaText={props.textAreaText}
-                addPostCallBack={props.addPostCallBack}
-                changeTextArea={props.changeTextArea}
+                dispatch={props.dispatch}
             />
     </div>
 }

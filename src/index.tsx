@@ -9,8 +9,7 @@ import App from "./App";
 let render=(state:RootStateType)=>{
     ReactDOM.render(
             <App state={state}
-                 addPost={store.addPost.bind(store)}
-                 changeTextArea={store.changeTextArea.bind(store)}
+                 dispatch={store.dispatch.bind(store)}
             />,
         document.getElementById('root')
     );

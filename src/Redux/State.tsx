@@ -1,3 +1,5 @@
+import {strict} from "assert";
+
 export type dialogItemType = {
     id: number
     name: string
@@ -23,14 +25,23 @@ export type RootStateType = {
     }
 }
 
+export type actionsType = addPostActionType | updateTextAreaActionType
+export type addPostActionType = {
+    type:"ADD-POST",
+}
+export type updateTextAreaActionType = {
+    type: "UPDATE-NEW-POST-TEXT"
+    currentText: string
+}
 
 export type StoreType = {
     _state: RootStateType
-    addPost: () => void
-    changeTextArea: (currentText: string) => void
+    // addPost: () => void
+    // changeTextArea: (currentText: string) => void
     subscribe: (observer: () => void) => void
-    render: (state:RootStateType) => void
+    _callSubscribe: (state:RootStateType) => void
     getState: () => RootStateType
+    dispatch: (action:actionsType)=>void
 }
 //________________________________________________________________________
 let store: StoreType = {
@@ -67,30 +78,49 @@ let store: StoreType = {
             textAreaText: "525",
         }
     },
-    addPost() {
-        let newPost: postsType = {
-            id: 2,
-            message: this._state.profilePage.textAreaText,
-            avatar: "https://iconarchive.com/download/i45701/tooschee/medievalish-gaming/wow-orc.ico",
-            likesCount: 0,
-        }
-        this._state.profilePage.textAreaText = ""
-        this._state.profilePage.posts = [...this._state.profilePage.posts, newPost]
+    _callSubscribe() {},
 
-        this.render(this.getState())
-    },
-    changeTextArea(currentText: string) {
-        this._state.profilePage.textAreaText = currentText
-        this.render(this.getState())
-    },
-    subscribe(observer) {
-        this.render = observer
-    },
-    render() {},
     getState() {
         return this._state;
-    }
+    },
+    subscribe(observer) {
+        this._callSubscribe = observer
+    },
 
+    // addPost() {
+    //     let newPost: postsType = {
+    //         id: 2,
+    //         message: this._state.profilePage.textAreaText,
+    //         avatar: "https://iconarchive.com/download/i45701/tooschee/medievalish-gaming/wow-orc.ico",
+    //         likesCount: 0,
+    //     }
+    //     this._state.profilePage.textAreaText = ""
+    //     this._state.profilePage.posts = [...this._state.profilePage.posts, newPost]
+    //
+    //     this._callSubscribe(this.getState())
+    // },
+    // changeTextArea(currentText: string) {
+    //     this._state.profilePage.textAreaText = currentText
+    //     this._callSubscribe(this.getState())
+    // },
+
+    dispatch(action) {
+        if (action.type === "ADD-POST") {
+            let newPost: postsType = {
+                id: 2,
+                message: this._state.profilePage.textAreaText,
+                avatar: "https://iconarchive.com/download/i45701/tooschee/medievalish-gaming/wow-orc.ico",
+                likesCount: 0,
+            }
+            this._state.profilePage.textAreaText = ""
+            this._state.profilePage.posts = [...this._state.profilePage.posts, newPost]
+
+            this._callSubscribe(this.getState())
+        } else if(action.type === "UPDATE-NEW-POST-TEXT"){
+            this._state.profilePage.textAreaText = action.currentText
+            this._callSubscribe(this.getState())
+        }
+    },
 
 }
 

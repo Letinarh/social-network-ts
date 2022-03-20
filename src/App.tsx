@@ -6,13 +6,12 @@ import Profile from "./Components/Profiles/Profile"
 import Dialogs from "./Components/Dialogs/Dialogs"
 import Footer from "./Components/Footer/Footer"
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
-import {RootStateType, StoreType} from "./Redux/State";
+import {actionsType, RootStateType, StoreType} from "./Redux/State";
 
 //UI
 type appPropsType = {
     state: RootStateType
-    addPost: () => void
-    changeTextArea: (currentText: string) => void
+    dispatch: (action:actionsType)=>void
 }
 
 const App = (props:appPropsType) => {
@@ -26,9 +25,8 @@ const App = (props:appPropsType) => {
                         <Route path={"/"} element={<Navigate to="/profile"/>}/>
                         <Route path="/profile" element={<Profile
                             postsData ={props.state.profilePage.posts}
-                            addPostCallBack={props.addPost}
+                            dispatch={props.dispatch}
                             textAreaText={props.state.profilePage.textAreaText}
-                            changeTextArea={props.changeTextArea}
                         />}/>
                         <Route path="/dialogs" element={
                             <Dialogs messageData={props.state.dialogsPage.messageData}
