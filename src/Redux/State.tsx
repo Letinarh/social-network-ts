@@ -1,5 +1,10 @@
 import {strict} from "assert";
 
+export enum actionCreatorTypes {
+    ADD_POST = "ADD-POST",
+    UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
+}
+
 export type dialogItemType = {
     id: number
     name: string
@@ -27,21 +32,19 @@ export type RootStateType = {
 
 export type actionsType = addPostActionType | updateTextAreaActionType
 export type addPostActionType = {
-    type:"ADD-POST",
+    type: actionCreatorTypes.ADD_POST,
 }
 export type updateTextAreaActionType = {
-    type: "UPDATE-NEW-POST-TEXT"
+    type: actionCreatorTypes.UPDATE_NEW_POST_TEXT
     currentText: string
 }
 
 export type StoreType = {
     _state: RootStateType
-    // addPost: () => void
-    // changeTextArea: (currentText: string) => void
     subscribe: (observer: () => void) => void
-    _callSubscribe: (state:RootStateType) => void
+    _callSubscribe: (state: RootStateType) => void
     getState: () => RootStateType
-    dispatch: (action:actionsType)=>void
+    dispatch: (action: actionsType) => void
 }
 //________________________________________________________________________
 let store: StoreType = {
@@ -65,20 +68,21 @@ let store: StoreType = {
                 {
                     id: 0,
                     message: "Hello people sd fh   fsdj hfsdhf d fsd fisdiu df sdf ds f sd fjd hfh sdk fsd fs df hsdk fusd fsd f sd fsdf sdi fsd  fsd fsd d sfiu diu sd fius dfi !",
-                    avatar: "https://iconarchive.com/download/i45701/tooschee/medievalish-gaming/wow-orc.ico",
+                    avatar: "https://stickers.wiki/static/stickers/cisforcookie/file_164842.webp?ezimgfmt=rs:134x134/rscb1/ng:webp/ngcb1",
                     likesCount: 3,
                 },
                 {
                     id: 1,
                     message: "Hello too",
-                    avatar: "https://iconarchive.com/download/i45729/tooschee/water-gaming/wow-worgen.ico",
+                    avatar: "https://stickers.wiki/static/stickers/cisforcookie/file_164842.webp?ezimgfmt=rs:134x134/rscb1/ng:webp/ngcb1",
                     likesCount: 5,
                 }
             ],
-            textAreaText: "525",
+            textAreaText: "",
         }
     },
-    _callSubscribe() {},
+    _callSubscribe() {
+    },
 
     getState() {
         return this._state;
@@ -87,41 +91,35 @@ let store: StoreType = {
         this._callSubscribe = observer
     },
 
-    // addPost() {
-    //     let newPost: postsType = {
-    //         id: 2,
-    //         message: this._state.profilePage.textAreaText,
-    //         avatar: "https://iconarchive.com/download/i45701/tooschee/medievalish-gaming/wow-orc.ico",
-    //         likesCount: 0,
-    //     }
-    //     this._state.profilePage.textAreaText = ""
-    //     this._state.profilePage.posts = [...this._state.profilePage.posts, newPost]
-    //
-    //     this._callSubscribe(this.getState())
-    // },
-    // changeTextArea(currentText: string) {
-    //     this._state.profilePage.textAreaText = currentText
-    //     this._callSubscribe(this.getState())
-    // },
-
     dispatch(action) {
         if (action.type === "ADD-POST") {
             let newPost: postsType = {
                 id: 2,
                 message: this._state.profilePage.textAreaText,
-                avatar: "https://iconarchive.com/download/i45701/tooschee/medievalish-gaming/wow-orc.ico",
+                avatar: "https://stickers.wiki/static/stickers/cisforcookie/file_164842.webp?ezimgfmt=rs:134x134/rscb1/ng:webp/ngcb1",
                 likesCount: 0,
             }
             this._state.profilePage.textAreaText = ""
             this._state.profilePage.posts = [...this._state.profilePage.posts, newPost]
 
             this._callSubscribe(this.getState())
-        } else if(action.type === "UPDATE-NEW-POST-TEXT"){
+        } else if (action.type === "UPDATE-NEW-POST-TEXT") {
             this._state.profilePage.textAreaText = action.currentText
             this._callSubscribe(this.getState())
         }
     },
 
+}
+export const addPostAC = (): actionsType => {
+    return {
+        type: actionCreatorTypes.ADD_POST
+    }
+}
+export const updateTextAreaAC = (TEXT: string): actionsType => {
+    return {
+        type: actionCreatorTypes.UPDATE_NEW_POST_TEXT,
+        currentText: TEXT,
+    }
 }
 
 export default store
