@@ -1,8 +1,11 @@
 import {strict} from "assert";
+import {ChangeEventHandler, TextareaHTMLAttributes} from "react";
 
 export enum actionCreatorTypes {
     ADD_POST = "ADD-POST",
-    UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT"
+    UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT",
+    UPDATE_NEW_MESSAGE_TEXT = "UPDATE-NEW-MESSAGE-TEXT",
+    SEND_MESSAGE = "SEND-MESSAGE"
 }
 
 export type dialogItemType = {
@@ -23,6 +26,7 @@ export type RootStateType = {
     dialogsPage: {
         dialogsData: Array<dialogItemType>
         messageData: Array<messageType>
+        newMessageText: string
     }
     profilePage: {
         posts: Array<postsType>,
@@ -30,13 +34,20 @@ export type RootStateType = {
     }
 }
 
-export type actionsType = addPostActionType | updateTextAreaActionType
+export type actionsType = addPostActionType | updateTextAreaActionType | updateNewMessageTextType | sendMessageType
 export type addPostActionType = {
     type: actionCreatorTypes.ADD_POST,
 }
 export type updateTextAreaActionType = {
     type: actionCreatorTypes.UPDATE_NEW_POST_TEXT
     currentText: string
+}
+export type updateNewMessageTextType={
+    type:actionCreatorTypes.UPDATE_NEW_MESSAGE_TEXT
+    currentMessageText: string
+}
+export type sendMessageType={
+    type:actionCreatorTypes.SEND_MESSAGE
 }
 
 export type StoreType = {
@@ -62,6 +73,7 @@ let store: StoreType = {
                 {id: 3, messageText: "In't gonna live forever"},
                 {id: 4, messageText: "Just do it"},
             ],
+            newMessageText:"",
         },
         profilePage: {
             posts: [
@@ -92,7 +104,7 @@ let store: StoreType = {
     },
 
     dispatch(action) {
-        if (action.type === "ADD-POST") {
+        if (action.type === actionCreatorTypes.ADD_POST) {
             let newPost: postsType = {
                 id: 2,
                 message: this._state.profilePage.textAreaText,
@@ -103,8 +115,18 @@ let store: StoreType = {
             this._state.profilePage.posts = [...this._state.profilePage.posts, newPost]
 
             this._callSubscribe(this.getState())
-        } else if (action.type === "UPDATE-NEW-POST-TEXT") {
+        } else if (action.type === actionCreatorTypes.UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.textAreaText = action.currentText
+            this._callSubscribe(this.getState())
+        } else if(action.type === actionCreatorTypes.UPDATE_NEW_MESSAGE_TEXT) {
+            this._state.dialogsPage.newMessageText = action.currentMessageText
+            this._callSubscribe(this.getState())
+        } else if(action.type === actionCreatorTypes.SEND_MESSAGE) {
+            let newMessage:messageType = {
+                id: 5, messageText: this._state.dialogsPage.newMessageText
+            }
+            this._state.dialogsPage.messageData = [...this._state.dialogsPage.messageData,newMessage,]
+            this._state.dialogsPage.newMessageText = ""
             this._callSubscribe(this.getState())
         }
     },
@@ -115,11 +137,20 @@ export const addPostAC = (): actionsType => {
         type: actionCreatorTypes.ADD_POST
     }
 }
+
 export const updateTextAreaAC = (TEXT: string): actionsType => {
     return {
         type: actionCreatorTypes.UPDATE_NEW_POST_TEXT,
         currentText: TEXT,
     }
+}
+export const updateNewMessageTextAC = (text:string): actionsType =>{
+    return {
+        type:actionCreatorTypes.UPDATE_NEW_MESSAGE_TEXT, currentMessageText: text
+    }
+}
+export const sendMessageAC = (): actionsType =>{
+    return {type:actionCreatorTypes.SEND_MESSAGE}
 }
 
 export default store
