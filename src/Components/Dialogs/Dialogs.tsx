@@ -2,7 +2,8 @@ import React, {ChangeEvent, RefObject} from 'react';
 import s from "./Dialogs.module.css"
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {actionsType, dialogItemType, messageType, sendMessageAC, updateNewMessageTextAC} from "../../Redux/State";
+import {actionsType, dialogItemType, messageType} from "../../Redux/Store";
+import {sendMessageAC, updateNewMessageTextAC} from "../../Redux/dialogsReducer";
 
 type DialogsPropsType = {
     dialogsData: Array<dialogItemType>
@@ -21,8 +22,6 @@ const Dialogs = (props: DialogsPropsType) => {
         props.messageData.map((m) =>
             <Message id={m.id} messageText={m.messageText}></Message>)
     ]
-
-    //let textCatcher: RefObject<HTMLTextAreaElement> = React.createRef()
 
     const addMessageHandler = () => {
         props.dispatch(sendMessageAC())

@@ -1,4 +1,4 @@
-import {actionCreatorTypes, actionsType, dialogItemType, messageType} from "./State";
+import {actionCreatorTypes, actionsType, dialogItemType, messageType} from "./Store";
 
 type     dialogsPageStateType = {
     dialogsData: Array<dialogItemType>
@@ -6,6 +6,21 @@ type     dialogsPageStateType = {
     newMessageText: string
 }
 
+let initialState = {
+    dialogsData: [
+        {id: 1, name: "Petro"},
+        {id: 2, name: "Nikola"},
+        {id: 3, name: "Zahar"},
+        {id: 4, name: "Kat"},
+    ],
+    messageData: [
+        {id: 1, messageText: "Bachelor degree"},
+        {id: 2, messageText: "I love Type Script"},
+        {id: 3, messageText: "In't gonna live forever"},
+        {id: 4, messageText: "Just do it"},
+    ],
+    newMessageText:"",
+}
 export const updateNewMessageTextAC = (text:string): actionsType =>{
     return {
         type:actionCreatorTypes.UPDATE_NEW_MESSAGE_TEXT, currentMessageText: text
@@ -15,7 +30,7 @@ export const sendMessageAC = (): actionsType =>{
     return {type:actionCreatorTypes.SEND_MESSAGE}
 }
 
-const dialogsReducer = (state:dialogsPageStateType, action:actionsType) =>{
+export const dialogsReducer = (state:dialogsPageStateType = initialState, action:actionsType) =>{
 switch (action.type) {
     case actionCreatorTypes.UPDATE_NEW_MESSAGE_TEXT:{
         state.newMessageText = action.currentMessageText

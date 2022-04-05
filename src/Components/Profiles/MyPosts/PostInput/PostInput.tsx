@@ -1,7 +1,7 @@
 import React, {ChangeEvent, RefObject} from 'react';
 import s from "./PostInput.module.css";
-import {log} from "util";
-import {actionsType, addPostAC, updateTextAreaAC} from "../../../../Redux/State";
+import {actionsType} from "../../../../Redux/Store";
+import {addPostAC, updateTextAreaAC} from "../../../../Redux/profile-reducer";
 
 
 type postInputPropsType = {
