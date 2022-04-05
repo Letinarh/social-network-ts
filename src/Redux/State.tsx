@@ -1,5 +1,7 @@
 import {strict} from "assert";
 import {ChangeEventHandler, TextareaHTMLAttributes} from "react";
+import profileReducer from "./profile-reducer";
+import dialogsReducer from "./dialogsReducer";
 
 export enum actionCreatorTypes {
     ADD_POST = "ADD-POST",
@@ -104,53 +106,10 @@ let store: StoreType = {
     },
 
     dispatch(action) {
-        if (action.type === actionCreatorTypes.ADD_POST) {
-            let newPost: postsType = {
-                id: 2,
-                message: this._state.profilePage.textAreaText,
-                avatar: "https://stickers.wiki/static/stickers/cisforcookie/file_164842.webp?ezimgfmt=rs:134x134/rscb1/ng:webp/ngcb1",
-                likesCount: 0,
-            }
-            this._state.profilePage.textAreaText = ""
-            this._state.profilePage.posts = [...this._state.profilePage.posts, newPost]
-
-            this._callSubscribe(this.getState())
-        } else if (action.type === actionCreatorTypes.UPDATE_NEW_POST_TEXT) {
-            this._state.profilePage.textAreaText = action.currentText
-            this._callSubscribe(this.getState())
-        } else if(action.type === actionCreatorTypes.UPDATE_NEW_MESSAGE_TEXT) {
-            this._state.dialogsPage.newMessageText = action.currentMessageText
-            this._callSubscribe(this.getState())
-        } else if(action.type === actionCreatorTypes.SEND_MESSAGE) {
-            let newMessage:messageType = {
-                id: 5, messageText: this._state.dialogsPage.newMessageText
-            }
-            this._state.dialogsPage.messageData = [...this._state.dialogsPage.messageData,newMessage,]
-            this._state.dialogsPage.newMessageText = ""
-            this._callSubscribe(this.getState())
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage,action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage,action)
+        this._callSubscribe(this._state)
     },
 
 }
-export const addPostAC = (): actionsType => {
-    return {
-        type: actionCreatorTypes.ADD_POST
-    }
-}
-
-export const updateTextAreaAC = (TEXT: string): actionsType => {
-    return {
-        type: actionCreatorTypes.UPDATE_NEW_POST_TEXT,
-        currentText: TEXT,
-    }
-}
-export const updateNewMessageTextAC = (text:string): actionsType =>{
-    return {
-        type:actionCreatorTypes.UPDATE_NEW_MESSAGE_TEXT, currentMessageText: text
-    }
-}
-export const sendMessageAC = (): actionsType =>{
-    return {type:actionCreatorTypes.SEND_MESSAGE}
-}
-
 export default store
