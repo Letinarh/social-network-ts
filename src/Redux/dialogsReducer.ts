@@ -21,6 +21,7 @@ let initialState = {
     ],
     newMessageText:"",
 }
+
 export const updateNewMessageTextAC = (text:string): actionsType =>{
     return {
         type:actionCreatorTypes.UPDATE_NEW_MESSAGE_TEXT, currentMessageText: text
