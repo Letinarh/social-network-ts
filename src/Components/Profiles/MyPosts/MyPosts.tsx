@@ -1,6 +1,5 @@
 import React from 'react';
 import { ProfilePropsType } from '../Profile';
-import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import PostInput from "./PostInput/PostInput";
 

@@ -7,7 +7,7 @@ const Footer = () =>{
         <div className={s.fContent}>
 
             <img src="https://icon-library.com/images/waiting-icon-gif/waiting-icon-gif-29.jpg" width="70" height="70" alt=""/>
-            Are you serious read that?
+            Are you serious?
         </div>
 
     </footer>
