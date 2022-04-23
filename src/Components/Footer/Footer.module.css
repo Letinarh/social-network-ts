@@ -7,4 +7,5 @@
 }
 .fContent{
     position: absolute; bottom: 0; left: calc(50% - 35px);
+    background-color: rgba(0.0.0.0,3);
 }
