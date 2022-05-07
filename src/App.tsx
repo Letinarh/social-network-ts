@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React from 'react';
 import './App.css';
 import Header from "./Components/Header/Header"
 import Navbar from "./Components/Nav/Nav"
@@ -6,15 +6,16 @@ import Profile from "./Components/Profiles/Profile"
 import Dialogs from "./Components/Dialogs/Dialogs"
 import Footer from "./Components/Footer/Footer"
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
-import {actionsType, RootStateType, StoreType} from "./Redux/Store";
+import store, {actionsType, RootStateType, StoreType} from "./Redux/Store";
+import StoreContext from "./StoreContext";
 
 //UI
 type appPropsType = {
     state: RootStateType
-    dispatch: (action:actionsType)=>void
+    dispatch: (action: actionsType) => void
 }
 
-const App = (props:appPropsType) => {
+const App = (props: appPropsType) => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
@@ -24,7 +25,7 @@ const App = (props:appPropsType) => {
                     <Routes>
                         <Route path={"/"} element={<Navigate to="/profile"/>}/>
                         <Route path="/profile" element={<Profile
-                            postsData ={props.state.profilePage.posts}
+                            postsData={props.state.profilePage.posts}
                             dispatch={props.dispatch}
                             textAreaText={props.state.profilePage.textAreaText}
                         />}/>
@@ -41,7 +42,7 @@ const App = (props:appPropsType) => {
                 <Footer/>
             </div>
         </BrowserRouter>
-);
+    );
 }
 
 export default App;
