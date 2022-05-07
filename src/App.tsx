@@ -7,7 +7,6 @@ import Dialogs from "./Components/Dialogs/Dialogs"
 import Footer from "./Components/Footer/Footer"
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import store, {actionsType, RootStateType, StoreType} from "./Redux/Store";
-import StoreContext from "./StoreContext";
 
 //UI
 type appPropsType = {
