@@ -8,7 +8,7 @@ const Footer = () =>{
 
             <img src="https://icon-library.com/images/waiting-icon-gif/waiting-icon-gif-29.jpg" width="70" height="70" alt=""/>
         </div>
-
+<div>simple  activity</div>
     </footer>
 }
 export default Footer
