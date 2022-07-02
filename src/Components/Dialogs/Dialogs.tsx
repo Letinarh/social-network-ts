@@ -1,34 +1,46 @@
-import React, {ChangeEvent, RefObject} from 'react';
+import React, {ChangeEvent} from 'react';
 import s from "./Dialogs.module.css"
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {actionsType, dialogItemType, messageType} from "../../Redux/Store";
+import {dialogItemType, messageType} from "../../Redux/Store";
 import {sendMessageAC, updateNewMessageTextAC} from "../../Redux/dialogsReducer";
+import {useDispatch, useSelector} from "react-redux";
+import {RootStateType} from "../../Redux/redux-store";
 
 type DialogsPropsType = {
-    dialogsData: Array<dialogItemType>
+/*    dialogsData: Array<dialogItemType>
     messageData: Array<messageType>
     newMessageText: string
-    dispatch: (action: actionsType) => void
+    dispatch: (action: actionsType) => void*/
 }
 
+
+
 const Dialogs = (props: DialogsPropsType) => {
+
+    const dialogsData = useSelector<RootStateType,Array<dialogItemType>>(state => state.dialogsPage.dialogsData)
+    const messageData = useSelector<RootStateType,Array<messageType>>(state => state.dialogsPage.messageData)
+    const newMessageText = useSelector<RootStateType,string>(state => state.dialogsPage.newMessageText)
+    const dispatch = useDispatch();
+
+
+
     let dialogElements = [
-        props.dialogsData.map((dialog) =>
+        dialogsData.map((dialog) =>
             <DialogItem name={dialog.name} id={dialog.id}></DialogItem>)
     ]
 
     let messageElements = [
-        props.messageData.map((m) =>
+        messageData.map((m) =>
             <Message id={m.id} messageText={m.messageText}></Message>)
     ]
 
     const addMessageHandler = () => {
-        props.dispatch(sendMessageAC())
+        dispatch(sendMessageAC())
     }
     const onChangeNewMessageTextHandler = (e:ChangeEvent<HTMLTextAreaElement>) => {
         let body = e.target.value
-        props.dispatch(updateNewMessageTextAC(body))
+        dispatch(updateNewMessageTextAC(body))
     }
 
     return (
@@ -42,7 +54,7 @@ const Dialogs = (props: DialogsPropsType) => {
                 <div>
                     <div>
                          <textarea
-                             value={props.newMessageText}
+                             value={newMessageText}
                              placeholder="Enter you message"
                              onChange={onChangeNewMessageTextHandler}
                          >

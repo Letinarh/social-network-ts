@@ -4,19 +4,18 @@ import MyPosts from "./MyPosts/MyPosts"
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 export type ProfilePropsType ={
-    postsData:Array<postsType>
+/*    postsData:Array<postsType>
     textAreaText:string
-    dispatch: (action:actionsType)=>void
-
+    dispatch: (action:actionsType)=>void*/
 }
 const Profile = (props:ProfilePropsType) => {
 
     return <div>
             <ProfileInfo />
             <MyPosts
-                postsData={props.postsData}
+/*                postsData={props.postsData}
                 textAreaText={props.textAreaText}
-                dispatch={props.dispatch}
+                dispatch={props.dispatch}*/
             />
     </div>
 }

@@ -1,20 +1,27 @@
 import React from 'react';
-import { ProfilePropsType } from '../Profile';
 import Post from "./Post/Post";
 import PostInput from "./PostInput/PostInput";
+import {useDispatch, useSelector } from "react-redux";
+import {RootStateType} from "../../../Redux/redux-store";
+import {postsType} from "../../../Redux/Store";
 
 
-type MyPostsPropsType = ProfilePropsType
-const MyPosts = (props:MyPostsPropsType) => {
-    let postsElements = props.postsData.map((postItem)=>
+const MyPosts = () => {
+
+    const postsData = useSelector<RootStateType,Array<postsType >>(state => state.profilePage.posts)
+    const textAreaText = useSelector<RootStateType,string>(state => state.profilePage.textAreaText)
+    const dispatch = useDispatch();
+
+
+    let postsElements = postsData.map((postItem)=>
         <Post avatar={postItem.avatar} message={postItem.message} likesCount={postItem.likesCount}/>)
 
 
     return <div>
         <div>
             <PostInput
-                text={props.textAreaText}
-                dispatch={props.dispatch}
+                text={textAreaText}
+                dispatch={dispatch}
             />
         </div>
         

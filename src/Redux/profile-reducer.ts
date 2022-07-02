@@ -1,4 +1,4 @@
-import {postsType, actionCreatorTypes, actionsType} from './Store'
+import {actionCreatorTypes, actionsType, postsType} from './Store'
 
 type     profilePageStoreType = {
     posts: Array<postsType>,

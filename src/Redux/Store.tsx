@@ -22,6 +22,7 @@ export type postsType = {
     message: string,
     likesCount: number,
 }
+
 export type RootStateType = {
     dialogsPage: {
         dialogsData: Array<dialogItemType>

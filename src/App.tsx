@@ -7,13 +7,13 @@ import Dialogs from "./Components/Dialogs/Dialogs"
 import Footer from "./Components/Footer/Footer"
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import {actionsType, RootStateType} from "./Redux/Store";
+import {AppStateType} from "./Redux/redux-store";
 
 //UI
 type appPropsType = {
-    state: RootStateType
-    dispatch: (action: actionsType) => void
+/*    state: RootStateType
+    dispatch: (action: actionsType) => void*/
 }
-
 const App = (props: appPropsType) => {
     return (
         <BrowserRouter>
@@ -24,15 +24,18 @@ const App = (props: appPropsType) => {
                     <Routes>
                         <Route path={"/"} element={<Navigate to="/profile"/>}/>
                         <Route path="/profile" element={<Profile
-                            postsData={props.state.profilePage.posts}
+                            /*postsData={props.state.profilePage.posts}
                             dispatch={props.dispatch}
-                            textAreaText={props.state.profilePage.textAreaText}
-                        />}/>
+                            textAreaText={props.state.profilePage.textAreaText}*/
+                        />
+
+                        }/>
                         <Route path="/dialogs" element={
-                            <Dialogs messageData={props.state.dialogsPage.messageData}
+                            <Dialogs
+                                     /*messageData={props.state.dialogsPage.messageData}
                                      dialogsData={props.state.dialogsPage.dialogsData}
                                      newMessageText={props.state.dialogsPage.newMessageText}
-                                     dispatch={props.dispatch}
+                                     dispatch={props.dispatch}*/
                             />}
                         />
                     </Routes>
