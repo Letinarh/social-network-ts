@@ -5,7 +5,7 @@ type     profilePageStoreType = {
     textAreaText: string,
 }
 
-let initialState = {
+let initialState:profilePageStoreType = {
     posts: [
         {
             id: 0,
