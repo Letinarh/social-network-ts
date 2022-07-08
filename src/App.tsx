@@ -6,14 +6,11 @@ import Profile from "./Components/Profiles/Profile"
 import Dialogs from "./Components/Dialogs/Dialogs"
 import Footer from "./Components/Footer/Footer"
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
-import {actionsType, RootStateType} from "./Redux/Store";
-import {AppStateType} from "./Redux/redux-store";
+
 import Users from "./Components/Users/Users";
 
 //UI
 type appPropsType = {
-/*    state: RootStateType
-    dispatch: (action: actionsType) => void*/
 }
 const App = (props: appPropsType) => {
     return (

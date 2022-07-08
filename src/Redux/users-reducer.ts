@@ -8,6 +8,7 @@ export enum actionCreatorTypes {
 export type userType = {
     id:string
     fullName:string
+    photoUrl:string
     range: "Support" | "Hang Around"| "Nomad "|"Prospect"| "Member "
     location: {
         city: string
@@ -23,9 +24,10 @@ export type actionsType = followACType | unFollowACType | showMoreACType | setUs
 
 let initialState:usersPageStoreType = {
     users: [
-       /* {
+        /*{
             id: "0",
             fullName: "Vladimir Bukhta  ",
+            photoUrl:"https://freepngimg.com/save/73526-bearded-skull-illustration-vector-drawing-beard/1000x1000",
             range: "Support",
             location: {city: "Drogichin", country: "Belarus"},
             followed: false,
@@ -33,6 +35,7 @@ let initialState:usersPageStoreType = {
         {
             id: "1",
             fullName: "Alexandr Smirnov  ",
+            photoUrl:"https://us.123rf.com/450wm/jemastock/jemastock2104/jemastock210400572/167646451-motorcycle-handlebars-retro-style-icon.jpg?ver=6",
             range: "Hang Around",
             location: {city: "Kyiv", country: "Ukraine"},
             followed: true,
@@ -40,13 +43,15 @@ let initialState:usersPageStoreType = {
         {
             id: "2",
             fullName: "Victor Kosyak  ",
+            photoUrl:"https://i.pinimg.com/474x/82/6e/5c/826e5c628591719deba54c9b9ba10324--smiley-vikings.jpg",
             range: "Hang Around",
             location: {city: "Brest", country: "Belarus"},
             followed: true,
         },
         {
             id: "3",
-            fullName: "Ivan Kozak  ",
+            fullName: "Ivan Voron  ",
+            photoUrl:"https://img.freepik.com/free-vector/skull-moto-helmet_225004-1700.jpg?w=2000",
             range: "Support",
             location: {city: "Brest", country: "Belarus"},
             followed: false,
@@ -65,7 +70,6 @@ export const followAC  = (userId:string) =>  ({ type: actionCreatorTypes.FOLLOW,
 export const unFollowAC = (userId:string) => ({ type: actionCreatorTypes.UNFOLLOW, userId})
 export const showMoreAC = () => ({ type: actionCreatorTypes.UNFOLLOW })
 export const setUsersAC = (users:Array<userType>) => ({type:actionCreatorTypes.SET_USERS, users})
-
 
 
 export const usersReducer = (state: usersPageStoreType = initialState, action: actionsType): usersPageStoreType => {
@@ -90,7 +94,6 @@ export const usersReducer = (state: usersPageStoreType = initialState, action: a
             }
         case actionCreatorTypes.SET_USERS:
             return {...state, users:[...state.users, ...action.users]}
-
         default:
             return {...state}
     }
