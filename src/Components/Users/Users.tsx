@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootStateType} from "../../Redux/redux-store";
 import {followAC, setUsersAC, unFollowAC, userType} from "../../Redux/users-reducer";
 import s from "./users.module.css"
+import axios from "axios";
 
 const Users = () => {
     const usersData = useSelector<RootStateType,Array<userType>>(state => state.usersPage.users)
@@ -45,7 +46,10 @@ const Users = () => {
     ]
 
 if (usersData.length === 0) {
-    dispatch(setUsersAC(initUsers))
+    axios.get("https://social-network.samuraijs.com/api/1.0/users")
+    .then(response => {dispatch(setUsersAC(initUsers))})
+    //API Key "e51cb891-4ba3-40e0-8c44-82f372b76693"
+
 }
 
     return (
