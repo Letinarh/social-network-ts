@@ -6,10 +6,14 @@ export enum actionCreatorTypes {
 
 }
 export type userType = {
+    name:string
     id:string
-    fullName:string
-    photoUrl:string
-    range: "Support" | "Hang Around"| "Nomad "|"Prospect"| "Member "
+    uniqueUrlName: string
+    status: string
+    photos: {
+        "small": string,
+        "large": string
+    }
     location: {
         city: string
         country: string
