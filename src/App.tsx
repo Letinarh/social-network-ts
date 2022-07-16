@@ -12,7 +12,8 @@ import Users from "./Components/Users/Users";
 //UI
 type appPropsType = {
 }
-const App = (props: appPropsType) => {
+//(props: appPropsType)
+const App = () => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
