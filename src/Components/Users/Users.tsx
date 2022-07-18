@@ -4,6 +4,7 @@ import {RootStateType} from "../../Redux/redux-store";
 import {followAC, setUsersAC, unFollowAC, userType} from "../../Redux/users-reducer";
 import s from "./users.module.css"
 import axios from "axios";
+import userAvaDefault from "../../Assets/images/Ninja-Avatar.jpg"
 
 
 
@@ -77,7 +78,7 @@ debugger
                 usersData.map(u=> <div key={u.id}>
                     <span>
                         <div>
-                            <img src={u.photos.large} alt="Avatar" className={s.userAvatar}/>
+                            <img src={u.photos.large != null ? u.photos.large : userAvaDefault } alt="Avatar" className={s.userAvatar}/>
                         </div>
                         <div>
                             {u.followed ?
@@ -92,8 +93,8 @@ debugger
                         </span>
 
                         <span>
-                            <div>{u.location.country}</div>
-                            <div>{u.location.city}</div>
+                            <div>{"u.location.country"}</div>
+                            <div>{"u.location.city"}</div>
                         </span>
                         
                     </span>
