@@ -71,7 +71,7 @@ const Users = () => {
             //API Key "e51cb891-4ba3-40e0-8c44-82f372b76693"
         }
     }
-    useEffect(()=>{getUsers})
+    useEffect(getUsers,[usersData]);
     return (
 
         <div>
