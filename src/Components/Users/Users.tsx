@@ -95,6 +95,10 @@ const Users = () => {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
+    let curP = currentPage;
+    let curPF = ((curP - 5) < 0) ?  0  : curP - 5 ;
+    let curPL = curP + 5;
+    let slicedPages = pages.slice( curPF, curPL);
 
     let onPageChanged = (p:number) => {
         return (
@@ -111,13 +115,15 @@ const Users = () => {
     return (
         <div>
             <div>
-                {pages.map(p => {
+
+                {slicedPages.map(p => {
                     return <span className={currentPage == p ? s.selectedPage : s.pointed }
                                  onClick={()=>onPageChanged(p)}
                     >
-                        {p}
+                        {p} -
                     </span>
                 })}
+                ...
             </div>
             {
                 usersData.map(u => <div key={u.id}>
