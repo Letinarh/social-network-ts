@@ -3,6 +3,8 @@ export enum actionCreatorTypes {
     UNFOLLOW = "UNFOLLOW-USER",
     SHOW_MORE= "SHOW-MORE",
     SET_USERS= "SET-USERS",
+    SET_CURRENT_PAGE= "SET-CURRENT-PAGE",
+    SET_TOTAL_USERS_COUNT= "SET-TOTAL-USERS-COUNT",
 
 }
 export type userType = {
@@ -22,51 +24,26 @@ export type userType = {
 }
 export type usersPageStoreType = {
     users: Array<userType>,
+    pageSize: number,
+    totalUsersCount: number,
+    currentPage: number,
 }
-export type actionsType = followACType | unFollowACType | showMoreACType | setUsersACType
+export type actionsType = followACType | unFollowACType | showMoreACType | setUsersACType | setCurrentPageACType | setTotalUsersCountACType
 
 
 let initialState:usersPageStoreType = {
-    users: [
-        /*{
-            id: "0",
-            fullName: "Vladimir Bukhta  ",
-            photoUrl:"https://freepngimg.com/save/73526-bearded-skull-illustration-vector-drawing-beard/1000x1000",
-            range: "Support",
-            location: {city: "Drogichin", country: "Belarus"},
-            followed: false,
-        },
-        {
-            id: "1",
-            fullName: "Alexandr Smirnov  ",
-            photoUrl:"https://us.123rf.com/450wm/jemastock/jemastock2104/jemastock210400572/167646451-motorcycle-handlebars-retro-style-icon.jpg?ver=6",
-            range: "Hang Around",
-            location: {city: "Kyiv", country: "Ukraine"},
-            followed: true,
-        },
-        {
-            id: "2",
-            fullName: "Victor Kosyak  ",
-            photoUrl:"https://i.pinimg.com/474x/82/6e/5c/826e5c628591719deba54c9b9ba10324--smiley-vikings.jpg",
-            range: "Hang Around",
-            location: {city: "Brest", country: "Belarus"},
-            followed: true,
-        },
-        {
-            id: "3",
-            fullName: "Ivan Voron  ",
-            photoUrl:"https://img.freepik.com/free-vector/skull-moto-helmet_225004-1700.jpg?w=2000",
-            range: "Support",
-            location: {city: "Brest", country: "Belarus"},
-            followed: false,
-        },*/
-    ],
+    users: [],
+    pageSize: 10,
+    totalUsersCount: 15,
+    currentPage: 2,
 }
 
 type followACType = { type: actionCreatorTypes.FOLLOW, userId: string}
 type unFollowACType = { type: actionCreatorTypes.UNFOLLOW, userId: string}
 type showMoreACType = { type: actionCreatorTypes.SHOW_MORE, }
 type setUsersACType = { type: actionCreatorTypes.SET_USERS, users: Array<userType>}
+type setCurrentPageACType = {type: actionCreatorTypes.SET_CURRENT_PAGE, page: number}
+type setTotalUsersCountACType = {type: actionCreatorTypes.SET_TOTAL_USERS_COUNT, count: number}
 
 
 
@@ -74,7 +51,8 @@ export const followAC  = (userId:string) =>  ({ type: actionCreatorTypes.FOLLOW,
 export const unFollowAC = (userId:string) => ({ type: actionCreatorTypes.UNFOLLOW, userId})
 export const showMoreAC = () => ({ type: actionCreatorTypes.UNFOLLOW })
 export const setUsersAC = (users:Array<userType>) => ({type:actionCreatorTypes.SET_USERS, users})
-
+export const setUserPageAC = (page:number)=>({type:actionCreatorTypes.SET_CURRENT_PAGE,page})
+export const setTotalUsersCountAC = (count:number)=>({type:actionCreatorTypes.SET_TOTAL_USERS_COUNT,count})
 
 export const usersReducer = (state: usersPageStoreType = initialState, action: actionsType): usersPageStoreType => {
     switch (action.type) {
@@ -97,7 +75,11 @@ export const usersReducer = (state: usersPageStoreType = initialState, action: a
                 })
             }
         case actionCreatorTypes.SET_USERS:
-            return {...state, users:[...state.users, ...action.users]}
+            return {...state, users:[...action.users]}
+        case actionCreatorTypes.SET_CURRENT_PAGE:
+            return {...state,currentPage: action.page}
+        case actionCreatorTypes.SET_TOTAL_USERS_COUNT:
+            return {...state,totalUsersCount:action.count}
         default:
             return {...state}
     }
