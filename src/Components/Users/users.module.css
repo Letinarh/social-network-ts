@@ -9,3 +9,14 @@
 .pointed {
     cursor: pointer
 }
+.pageNumbers {
+    align-content: center;
+    margin:0 auto;
+}
+.usersWrapper {
+    display:block;
+    text-align: center;
+}
+.userDiv {
+    display: inline-block;
+}

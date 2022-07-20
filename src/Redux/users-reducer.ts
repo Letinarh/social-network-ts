@@ -1,10 +1,11 @@
 export enum actionCreatorTypes {
     FOLLOW = "FOLLOW-USER",
     UNFOLLOW = "UNFOLLOW-USER",
-    SHOW_MORE= "SHOW-MORE",
-    SET_USERS= "SET-USERS",
-    SET_CURRENT_PAGE= "SET-CURRENT-PAGE",
-    SET_TOTAL_USERS_COUNT= "SET-TOTAL-USERS-COUNT",
+    SHOW_MORE = "SHOW-MORE",
+    SET_USERS = "SET-USERS",
+    SET_CURRENT_PAGE = "SET-CURRENT-PAGE",
+    SET_TOTAL_USERS_COUNT = "SET-TOTAL-USERS-COUNT",
+    TOGGLE_IS_FETCHING = "TOGGLE-IS-FETCHING",
 
 }
 export type userType = {
@@ -27,15 +28,24 @@ export type usersPageStoreType = {
     pageSize: number,
     totalUsersCount: number,
     currentPage: number,
+    isFetching:boolean,
 }
-export type actionsType = followACType | unFollowACType | showMoreACType | setUsersACType | setCurrentPageACType | setTotalUsersCountACType
+export type actionsType =
+    followACType |
+    unFollowACType |
+    showMoreACType |
+    setUsersACType |
+    setCurrentPageACType |
+    setTotalUsersCountACType |
+    setIsFetchingACType
 
 
 let initialState:usersPageStoreType = {
     users: [],
     pageSize: 10,
     totalUsersCount: 15,
-    currentPage: 2,
+    currentPage: 1,
+    isFetching: false,
 }
 
 type followACType = { type: actionCreatorTypes.FOLLOW, userId: string}
@@ -44,6 +54,7 @@ type showMoreACType = { type: actionCreatorTypes.SHOW_MORE, }
 type setUsersACType = { type: actionCreatorTypes.SET_USERS, users: Array<userType>}
 type setCurrentPageACType = {type: actionCreatorTypes.SET_CURRENT_PAGE, page: number}
 type setTotalUsersCountACType = {type: actionCreatorTypes.SET_TOTAL_USERS_COUNT, count: number}
+type setIsFetchingACType = {type:actionCreatorTypes.TOGGLE_IS_FETCHING, isFetching:boolean}
 
 
 
@@ -53,6 +64,7 @@ export const showMoreAC = () => ({ type: actionCreatorTypes.UNFOLLOW })
 export const setUsersAC = (users:Array<userType>) => ({type:actionCreatorTypes.SET_USERS, users})
 export const setUserPageAC = (page:number)=>({type:actionCreatorTypes.SET_CURRENT_PAGE,page})
 export const setTotalUsersCountAC = (count:number)=>({type:actionCreatorTypes.SET_TOTAL_USERS_COUNT,count})
+export const setIsFetchingAC = (isFetching:boolean)=>({type:actionCreatorTypes.TOGGLE_IS_FETCHING,isFetching})
 
 export const usersReducer = (state: usersPageStoreType = initialState, action: actionsType): usersPageStoreType => {
     switch (action.type) {
@@ -80,6 +92,8 @@ export const usersReducer = (state: usersPageStoreType = initialState, action: a
             return {...state,currentPage: action.page}
         case actionCreatorTypes.SET_TOTAL_USERS_COUNT:
             return {...state,totalUsersCount:action.count}
+        case actionCreatorTypes.TOGGLE_IS_FETCHING:
+            return {...state,isFetching:action.isFetching}
         default:
             return {...state}
     }
