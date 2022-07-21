@@ -13,7 +13,7 @@ import s from "./users.module.css"
 import axios from "axios";
 import userAvaDefault from "../../Assets/images/Ninja-Avatar.jpg";
 import Preloader from "../Common/Preloader/Preloader";
-
+import {NavLink} from "react-router-dom";
 
 
 const Users = () => {
@@ -50,7 +50,7 @@ const Users = () => {
     let onPageChanged = (p: number) => {
         return (
             dispatch(setIsFetchingAC(true)),
-            dispatch(setUserPageAC(p)),
+                dispatch(setUserPageAC(p)),
 
                 axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${pageSize}`)
                     .then(response => {
@@ -62,7 +62,7 @@ const Users = () => {
 
     return (
         <>
-            { isFetching ? <Preloader/>: null }
+            {isFetching ? <Preloader/> : null}
             <div className={s.usersWrapper}>
                 <div className={s.pageNumbers}>
 
@@ -79,8 +79,10 @@ const Users = () => {
                     usersData.map(u => <div key={u.id} className={s.userDiv}>
                     <span>
                         <div>
-                            <img src={u.photos.large != null ? u.photos.large : userAvaDefault} alt="Avatar"
+                            <NavLink to={"/profile" + u.id}>
+                                <img src={u.photos.large != null ? u.photos.large : userAvaDefault} alt="Avatar"
                                  className={s.userAvatar}/>
+                            </NavLink>
                         </div>
                         <div>
                             {u.followed ?
