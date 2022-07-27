@@ -10,7 +10,7 @@ const MyPosts = () => {
 
     const postsData = useSelector<RootStateType,Array<postsType >>(state => state.profilePage.posts)
     const textAreaText = useSelector<RootStateType,string>(state => state.profilePage.textAreaText)
-    const dispatch = useDispatch();
+
 
 
     let postsElements = postsData.map((postItem)=>
@@ -21,7 +21,6 @@ const MyPosts = () => {
         <div>
             <PostInput
                 text={textAreaText}
-                dispatch={dispatch}
             />
         </div>
         

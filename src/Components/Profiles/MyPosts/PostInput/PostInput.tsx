@@ -1,22 +1,21 @@
 import React, {ChangeEvent, RefObject} from 'react';
 import s from "./PostInput.module.css";
-import {actionsType} from "../../../../Redux/Store";
 import {addPostAC, updateTextAreaAC} from "../../../../Redux/profile-reducer";
+import {useDispatch} from "react-redux";
 
-
+const dispatch = useDispatch();
 type postInputPropsType = {
-    dispatch: (action: actionsType) => void
     text: string
 }
 
 const PostInput = (props: postInputPropsType) => {
     let textInput: RefObject<HTMLTextAreaElement> = React.createRef();
     const addPostHandler = () => {
-        props.dispatch(addPostAC())
+        dispatch(addPostAC())
     }
 
     let changeTextAreaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(updateTextAreaAC(e.currentTarget.value))
+        dispatch(updateTextAreaAC(e.currentTarget.value))
     }
     return (
         <div className={s.divMessageInput}>

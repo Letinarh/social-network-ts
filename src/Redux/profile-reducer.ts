@@ -35,9 +35,6 @@ export const updateTextAreaAC = (TEXT: string): actionsType => {
     }
 }
 
-
-
-
 export const profileReducer = (state: profilePageStoreType = initialState, action: actionsType): profilePageStoreType => {
     switch (action.type) {
 
